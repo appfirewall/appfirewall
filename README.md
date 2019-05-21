@@ -1,1 +1,2 @@
-# appfirewall
+# AppFirewall
+Application Firewall for Linux.
