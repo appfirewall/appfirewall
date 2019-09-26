@@ -1,0 +1,2 @@
+# Ignore AS-Data file (get AS-Data with updateASData.sh script)
+ip2asn-v4-u32.tsv

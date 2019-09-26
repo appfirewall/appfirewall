@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+      "*.bpf": "c",
+      "*.h": "c",
+    }
+}

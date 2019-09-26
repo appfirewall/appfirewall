@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.appfirewall.protocol";
+
+package protocol;
+
+service AFI {
+    rpc SendStats (AFStats) returns (AFStatsReply) {}
+    rpc Prompt (AFConnectionInfo) returns (AFRule) {}
+}
+
+message AFEvent {
+    string time = 1;
+    AFConnectionInfo connection = 2;
+    AFRule rule = 3;
+}
+
+message AFStatistics {
+    string appfirewall_version = 1;
+    uint64 rules = 2;
+    uint64 uptime = 3;
+	uint64 dns_responses = 4;
+	uint64 connections  = 5;
+	uint64 ignored = 6;
+	uint64 accepted = 7;
+	uint64 dropped = 8;
+	uint64 rule_hits = 9;
+	uint64 rule_misses = 10;
+	map<string, uint64> by_address = 11;
+	map<string, uint64> by_host = 12;
+	map<string, uint64> by_uid = 13;
+	map<string, uint64> by_executable = 14;
+    repeated AFEvent events = 15;
+}
+
+message AFStats {
+    uint64 id = 1;
+    AFStatistics stats = 2;
+}
+
+message AFStatsReply {
+    uint64 id = 1;
+}
+
+message AFConnectionInfo {
+    string dst_ip = 1;
+    string dst_host = 2;
+    uint32 dst_port = 3;
+    uint32 dst_as_number = 4;
+    string dst_as_name = 5;
+    uint32 user_id = 6;
+    string user_name = 7;
+    uint32 process_id = 8;
+    string process_path = 9;
+    repeated string process_args = 10;
+}
+
+message AFRule {
+    string name = 1;
+    string action = 2;
+    string duration = 3;
+    AFOperator operator = 4;
+}
+
+message AFOperator {
+    string type = 1;
+    string operand = 2;
+    string data = 3;
+}
