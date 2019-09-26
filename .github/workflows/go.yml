@@ -23,6 +23,13 @@ jobs:
         sudo apt update
         sudo apt install bcc-tools libbcc-examples linux-headers-$(uname -r)
 
+    - name: Install Protobuf Compiler
+      run: | 
+        sudo apt install protobuf-compiler
+        go get -u github.com/golang/protobuf/protoc-gen-go
+        export GOPATH=$HOME/go
+        export PATH=$PATH:$GOPATH/bin
+
     - name: Generate BPF Sources
       run: go generate
 
