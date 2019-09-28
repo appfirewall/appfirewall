@@ -45,8 +45,8 @@ jobs:
     - name: Update AS Data
       run: ./updateASData.sh
 
-    - name: Smoke Test
-      run: sudo timeout --preserve-status --signal=INT 10s ./appfirewall
+    #- name: Smoke Test
+    #  run: sudo timeout --preserve-status --signal=INT 10s ./appfirewall
 
     - name: Create Build Artifact
       run: |
