@@ -28,6 +28,7 @@ jobs:
         sudo apt install protobuf-compiler
         go get -u github.com/golang/protobuf/protoc-gen-go
         export PATH=$PATH:$(go env GOPATH)/bin
+        echo $PATH
 
     - name: Generate BPF Sources
       run: go generate
